@@ -43,14 +43,14 @@ docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_arm64" -t mikeoer
 Building AMD:
 
 ```bash
-docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest .
+docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest -f Dockerfile.amd64 .
 ```
 
 ### Publishing to Docker Hub
 
 These images are published to [Docker Hub under `mikeoertli/id3tool`](https://hub.docker.com/r/mikeoertli/id3tool/tags).
 
-Right now, GitHub actions only support `amd64` architecture, so for now, those are the only images that are build and published automatically.
+Right now, GitHub actions [only support](https://www.mess.org/2022/01/17/Creating-a-linux-arm64-github-actions-runner/) `amd64` architecture, so for now, those are the only images that are build and published automatically.
 
 #### Publishing ARM64 Images (Manual)
 
