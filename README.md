@@ -1,4 +1,4 @@
-# id3editor-docker
+# id3tool Docker Image
 
 ![build image and push to docker hub workflow](https://github.com/mikeoertli/id3tool-docker/actions/workflows/publish-image-to-docker-hub.yml/badge.svg)
 
