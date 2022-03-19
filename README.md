@@ -8,6 +8,8 @@ Simple lightweight container to run [Ubuntu's `id3tool`](http://manpages.ubuntu.
 
 This uses `minideb` and the latest `id3tool` at the time of publication (`v1.2a-11`).
 
+Note: I haven't explored [`buildx`](https://docs.docker.com/desktop/multi-arch/) yet as a multi-arch solution.
+
 ## Docker Hub
 
 This project is now on Docker Hub under the same name ([mikeoertli/id3tool](https://hub.docker.com/r/mikeoertli/id3tool))! Instead of needing to clone this repo and build, you can just pull down the pre-built images and run with those.
@@ -37,13 +39,13 @@ However, the `Dockerfile` is currently manually kept in sync with the `txt` file
 Building ARM:
 
 ```bash
-docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_arm64" -t mikeoertli/id3tool:latest .
+docker build --platform linux/arm64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_arm64" -t mikeoertli/id3tool:latest .
 ```
 
 Building AMD:
 
 ```bash
-docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest -f Dockerfile.amd64 .
+docker build --platform linux/amd64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest -f Dockerfile.amd64 .
 ```
 
 ### Publishing to Docker Hub
