@@ -6,7 +6,7 @@
 
 Simple lightweight container to run [Ubuntu's `id3tool`](http://manpages.ubuntu.com/manpages/focal/man1/id3tool.1.html) without having to install Ubuntu.
 
-This uses minideb and the latest `id3tool` at the time of publication (`v1.2a-13`).
+This uses `minideb` and the latest `id3tool` at the time of publication (`v1.2a-11`).
 
 ## Docker Hub
 
