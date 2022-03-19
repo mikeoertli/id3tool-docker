@@ -27,4 +27,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: id3tool Docker Build
-        run: docker build -t mikeoertli/id3tool:latest .
+        run: docker build -t mikeoertli/id3tool:latest -f Dockerfile.amd64 .

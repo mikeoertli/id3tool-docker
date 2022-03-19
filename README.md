@@ -22,7 +22,9 @@ docker pull mikeoertli/id3tool
 
 This tool is [part of Ubuntu](http://manpages.ubuntu.com/manpages/focal/man1/id3tool.1.html).
 
-The binary is retrieved from [launchpad.net](https://launchpad.net/ubuntu/focal/arm64/id3tool/1.2a-11).
+The ARM binary is retrieved from [this launchpad.net resource](https://launchpad.net/ubuntu/focal/arm64/id3tool/1.2a-11).
+
+The AMD binary is retrieved from [this launchpad.net resource](https://launchpad.net/ubuntu/focal/amd64/id3tool/1.2a-11).
 
 ## Usage
 
@@ -32,8 +34,16 @@ The `id3tool` version number is kept in `id3tool-version.txt` so this build comm
 
 However, the `Dockerfile` is currently manually kept in sync with the `txt` file.
 
+Building ARM:
+
 ```bash
-docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)" -t mikeoertli/id3tool:latest .
+docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_arm64" -t mikeoertli/id3tool:latest .
+```
+
+Building AMD:
+
+```bash
+docker build -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest .
 ```
 
 ### Run
