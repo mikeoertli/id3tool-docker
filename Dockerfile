@@ -1,0 +1,21 @@
+# https://hub.docker.com/r/bitnami/minideb
+FROM bitnami/minideb:stretch
+
+LABEL maintainer="Mike Oertli"
+LABEL build_date="2022.03.19"
+LABEL description="This is intended to use as a near-drop-in-replacement for running id3tool natively."
+
+WORKDIR /temp
+
+# The man page and binary info can be found here: http://manpages.ubuntu.com/manpages/focal/man1/id3tool.1.html
+
+# This points to the release archive specific version:
+RUN install_packages wget && \
+  wget -q http://launchpadlibrarian.net/405477840/id3tool_1.2a-11_arm64.deb  && \
+  dpkg -i *.deb && \
+  rm *.deb
+
+# the CMD arg is the default flag passed if none is provided when the container is run
+# More info here: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint
+ENTRYPOINT ["id3tool"]
+CMD ["--help"]
