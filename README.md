@@ -39,13 +39,13 @@ However, the `Dockerfile` is currently manually kept in sync with the `txt` file
 Building ARM:
 
 ```bash
-docker build --platform linux/arm64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_arm64" -t mikeoertli/id3tool:latest .
+docker build --platform linux/arm64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)-arm64" -t mikeoertli/id3tool:latest-arm64 .
 ```
 
 Building AMD:
 
 ```bash
-docker build --platform linux/amd64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)_amd64" -t mikeoertli/id3tool:latest -f Dockerfile.amd64 .
+docker build --platform linux/amd64 -t mikeoertli/id3tool:"$(cat id3tool-version.txt)-amd64" -t mikeoertli/id3tool:latest-amd64 -f Dockerfile.amd64 .
 ```
 
 ### Publishing to Docker Hub
@@ -59,7 +59,7 @@ Right now, GitHub actions [only support](https://www.mess.org/2022/01/17/Creatin
 Images for `arm64` architecture must be pushed manually, the command to do that is:
 
 ```bash
-docker push mikeoertli/id3tool:"$(cat id3tool-version.txt)"_arm64
+docker push mikeoertli/id3tool:"$(cat id3tool-version.txt)"-arm64
 ```
 
 #### Publishing AMD64 Images
@@ -69,7 +69,7 @@ Images for `amd64` architecture are pushed when tagging the repo with a tag matc
 In addition to automatic publication via GitHub Actions, repos can also be pushed manually, the command to do that is:
 
 ```bash
-docker push mikeoertli/id3tool:"$(cat id3tool-version.txt)"_amd64
+docker push mikeoertli/id3tool:"$(cat id3tool-version.txt)"-amd64
 ```
 
 ### Run
@@ -83,7 +83,7 @@ There are a couple important items to note:
 #### Run Equivalent of 'id3tool FILE'
 
 ```bash
-docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest <switches> "<FILE>"
+docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest-arm64 <switches> "<FILE>"
 ```
 
 #### Passing CLI args
@@ -91,7 +91,7 @@ docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest <sw
 You can still pass command line args, for example, if you want to print the help guide, you can do that with `-h` or `--help` just like you normally would (or you can omit all args and options and the default is to display the `--help` output).
 
 ```bash
-docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest --help
+docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest-arm64 --help
 ```
 
 ## Tips and Misc. Info
@@ -116,5 +116,5 @@ To put it differently, if you don't pass an audio file argument to the `docker r
 In order to make this (appear to be) a "true" drop-in replacement for running `id3tool` natively, you could define an alias... something like this:
 
 ```bash
-alias id3tool='docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest'
+alias id3tool='docker run -it --name id3tool --rm -v $(pwd):/temp mikeoertli/id3tool:latest-arm64'
 ```
