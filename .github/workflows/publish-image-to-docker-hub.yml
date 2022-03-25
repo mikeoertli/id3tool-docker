@@ -30,6 +30,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          # github account and repo name (mikeoertli/id3tool) match that of docker hub, so we can use the github repo reference here
-          tags: ${{ github.repository }}:${{ env.RELEASE_VERSION }}
+          # github account and repo name (mikeoertli/id3tool-docker) don't match that of docker hub, so we CANNOT use the github repo reference here
+          # tags: ${{ github.repository }}:${{ env.RELEASE_VERSION }} 
+          tags: id3tool:${{ env.RELEASE_VERSION }}
           file: Dockerfile.amd64
